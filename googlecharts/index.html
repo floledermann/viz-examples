@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<style>
+</style>
+</head>
+<body>
+
+<div id="chart_div"></div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(draw);
+
+function draw() {
+
+    /*
+    var query = new google.visualization.Query("../_data/letters.csv", {sendMethod: 'auto'});
+    
+    query.send(function(response) {
+        if (response.isError()) {
+            alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+            return;
+        }
+        
+        var data = response.getDataTable();
+    });
+    */
+    
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Letter');
+    data.addColumn('number', 'Frequency');
+
+    data.addRows([
+        ["A",.08167],
+        ["C",.02782],
+        ["D",.04253],
+        ["E",.12702],
+        ["F",.02288],
+        ["H",.06094],
+        ["I",.06966],
+        ["L",.04025],
+        ["M",.02406],
+        ["N",.06749],
+        ["O",.07507],
+        ["R",.05987],
+        ["S",.06327],
+        ["T",.09056],
+        ["U",.02758],
+        ["W",.02360]
+    ]);
+    
+    
+    
+    var options = {
+        title: 'Alphabet',
+        hAxis: {
+            title: 'Letters',
+            viewWindow: {
+                min: [7, 30, 0],
+                max: [17, 30, 0]
+            }
+        },
+        vAxis: {
+            title: 'Frequency',
+            viewWindow: {
+                min: 0.02
+            },
+            baseline: 0.02
+        }
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+    chart.draw(data, options);
+}
+</script>
+
+</body>
